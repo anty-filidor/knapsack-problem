@@ -3,11 +3,11 @@ from typing import Dict, List, Tuple
 import pulp as pl
 
 
-def knapsack_problem(
+def knapsack_lp(
         n: int, p: List[int], w: List[int], C: int, verbose: bool = False
 ) -> Tuple[float, Dict[str, bool]]:
     """
-    Solves knapsack problem.
+    Solves knapsack problem using linear programming.
 
     We need to pack knapsack which has a certain capacity (e.g. kg). There are
     several items that can be loaded into it. Each item has its weight (e.g.
