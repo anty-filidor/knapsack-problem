@@ -39,19 +39,20 @@ for each item (as its _p/w_), (2) sort all items descending by that feature and
 full. This method has been implemented as function _knapsack_gd_ in the script
 [greedy_method.py](./greedy_method.py).
 
-Of course this method, as all heuristics, didn't guarantee to obtain optimal
+Of course this method, as all heuristics, didn't guarantee to get optimal
 solution.
 
 ## Setting up experiment
 
 To answer the question "which of two methods is better" we prepared an
-experiment to compare (1) time efficiency and (3) correctness of algorithms as
+experiment to compare (1) time efficiency and (2) correctness of algorithms as
 a function of data complexity.
 
 ### Data generator
 
 As first step, a utility that generates data with varying 'complexity' was
-implemented. Every tuple of created dataset had to meet following conditions:
+implemented. Every individual of created dataset had to meet following 
+conditions:
 
 - sum of weights of items must be smaller than _1.3C_
 - each item can have weight from range _[1, 10]_
@@ -69,7 +70,7 @@ Function that generates data can be found in
 In order to compute results, we prepared a dedicated set of functions
 ([timer.py](./timer.py)). Their responsibility was to measure time of execution
 of each evaluated method for varying input data, check if result obtained for
-greedy approach is optimal and visualise experiment on the chat.
+greedy approach is optimal, and visualise experiment on the chat.
 
 ## Results and discussion
 
@@ -83,11 +84,11 @@ _C_ (see figures below):
 
 Analysis of the charts can tell us that greedy implementation is much faster
 than its linear counterpart. Here, it's good to mention, that function
-_knapsack_gd_ wasn't implemented to meet high-efficiency condition.
+_knapsack_gd_ wasn't prepared to meet high-efficiency condition.
 
-We can also notice, that _knapsack_gd_ is accurate almost as linear programming
-implementation for small _C_. However, for higher complexity of data it is
-getting less precise, so that it cannot find optimal solution!
+We can also notice, that _knapsack_gd_ is almost accurate as linear programming
+implementation for small _C_. However, for higher data complexity it gets less 
+precise, so that it cannot find optimal solution!
 
 ## Conclusions
 
