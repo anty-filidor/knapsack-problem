@@ -12,11 +12,11 @@ class _KnapsackItem:
 
     def __post_init__(self) -> None:
         """Computes fields that results from input data."""
-        self._cost = self.value / self.weight
+        self._usability = self.value / self.weight
 
     def __lt__(self, other: '_KnapsackItem') -> bool:
         """Implements < operator."""
-        return self._cost < other._cost
+        return self._usability < other._usability
 
     def __repr__(self) -> str:
         """Returns representation of the objects."""

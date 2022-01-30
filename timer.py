@@ -1,9 +1,11 @@
 import time
 
-from typing import Any, Callable, Generator, List, Tuple, Union
+from typing import Any, Callable, List, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
+
+from data_generator import generate_data
 
 
 def measure_time(
@@ -25,22 +27,23 @@ def measure_time(
 def timer(
         function1: Callable,
         function2: Callable,
-        data: Generator,
+        C_start: int,
+        C_end: int,
 ) -> None:
     """
     Computes "time complexity" for two given functions.
 
     :param function1: function to perform computations for
     :param function2: function to perform computations for
-    :param data: a data generator that yields two element tuples with (1) data
-        label, (2) arguments to inject to the tested functions
+    :param C_start: lower bound of generated dataset
+    :param C_end: upper bound of generated dataset
     """
     mean_times1 = []
     mean_times2 = []
     complexities = []
     correct_results = []
 
-    for data_label, input_data in data():
+    for data_label, input_data in generate_data(C_start, C_end):
 
         time1, result1 = measure_time(function1, input_data)
         time2, result2 = measure_time(function2, input_data)
@@ -62,9 +65,9 @@ def timer(
         alpha=0.3,
         color='limegreen'
     )
-    plt.xlabel("Complexity of data")
+    plt.xlabel("Complexity of data (value of C)")
     plt.ylabel("Time of execution [s]")
     plt.title(f"{function1.__name__} vs {function2.__name__}")
     plt.legend()
-    plt.xticks(np.arange(min(complexities), max(complexities), 200))
+    plt.xticks(np.arange(min(complexities), max(complexities), int(C_end*0.1)))
     plt.show()
